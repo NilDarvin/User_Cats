@@ -13,8 +13,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         button.setOnClickListener {
+            //Используем Scope уровня приложения т.к. Activity = APP в данном случае
+            //Запускаем в основном потоке ибо работаем с View
             GlobalScope.launch(Dispatchers.Main) {
-                val result = httpRequest("https://api.deezer.com/user/2529/playlists");
+                val result = getPlayList()
                 textView.text = result;
             }
         }
